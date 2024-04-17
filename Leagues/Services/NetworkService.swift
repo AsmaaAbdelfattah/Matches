@@ -7,7 +7,10 @@
 
 import Foundation
 import Alamofire
-class NetworkServiceManager{
+protocol NetworkHandler {
+    func fetchAuthData<T>(url: String, compiletionHandler: @escaping (Result<T, Error>) -> Void) where T : Decodable
+}
+class NetworkServiceManager: NetworkHandler{
     private static var networkService : NetworkServiceManager?
  
     public static func getInstance()->NetworkServiceManager{

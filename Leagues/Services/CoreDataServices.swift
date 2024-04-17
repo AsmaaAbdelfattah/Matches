@@ -8,7 +8,13 @@
 import Foundation
 import CoreData
 import UIKit
-class CoreDataManager{
+protocol CoreDataHandler{
+    func saveToCoreData(league: Match )
+    func isFavourite(matchId : Int) -> Bool
+    func deleteFromCoreData(leagueKey : Int)
+    func fetchFromCoreData() -> [NSManagedObject]
+}
+class CoreDataManager: CoreDataHandler{
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let managedContext : NSManagedObjectContext!
     let entity : NSEntityDescription!
